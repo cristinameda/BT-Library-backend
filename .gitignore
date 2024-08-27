@@ -1,6 +1,13 @@
-HELP.md
+# Ignore the entire target directory
 target/
+
+# Allow the .war file to be tracked
+!target/*.war
+
+# Ignore Maven wrapper jar
 !.mvn/wrapper/maven-wrapper.jar
+
+# Allow other build outputs in src/main and src/test
 !**/src/main/**/target/
 !**/src/test/**/target/
 
