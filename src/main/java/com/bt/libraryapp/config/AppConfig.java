@@ -53,35 +53,13 @@ public class AppConfig {
     return configuration.getAuthenticationManager();
   }
 
-  //  @Bean
-  //  public CorsConfigurationSource corsConfigurationSource() {
-  //    CorsConfiguration corsConfiguration = new CorsConfiguration();
-  //    corsConfiguration.setAllowedOrigins(List.of("https://its-app-07-dev"));  // Remove port
-  // numbers if unnecessary
-  //    corsConfiguration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS")); //
-  // Specify methods
-  //    corsConfiguration.setAllowCredentials(true);
-  //    corsConfiguration.setAllowedHeaders(List.of("*"));
-  //    corsConfiguration.setExposedHeaders(List.of("Authorization", "Cache-Control",
-  // "Content-Type")); // Expose any necessary headers
-  //    corsConfiguration.setMaxAge(3600L); // Caches preflight response for 1 hour
-  //    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-  //    source.registerCorsConfiguration("/**", corsConfiguration);
-  //    return source;
-  //  }
-
   @Bean
   public CorsConfigurationSource corsConfigurationSource() {
     CorsConfiguration corsConfiguration = new CorsConfiguration();
-    corsConfiguration.setAllowedOrigins(
-        List.of("https://its-app-07-dev")); // Remove port numbers if unnecessary
-    corsConfiguration.setAllowedMethods(
-        List.of("GET", "POST", "PUT", "DELETE", "OPTIONS")); // Specify methods
+    corsConfiguration.setAllowedOrigins(List.of("https://its-app-07-dev:443"));
+    corsConfiguration.setAllowedMethods(List.of("*"));
     corsConfiguration.setAllowCredentials(true);
     corsConfiguration.setAllowedHeaders(List.of("*"));
-    corsConfiguration.setExposedHeaders(
-        List.of("Authorization", "Cache-Control", "Content-Type")); // Expose any necessary headers
-    corsConfiguration.setMaxAge(3600L); // Caches preflight response for 1 hour
     UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
     source.registerCorsConfiguration("/**", corsConfiguration);
     return source;
