@@ -4,6 +4,7 @@ import com.bt.libraryapp.config.AppConfig;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -30,19 +31,19 @@ public class SecurityConfig {
         .cors(cors -> cors.configurationSource(appConfig.corsConfigurationSource()))
         .authorizeHttpRequests(
             request -> {
-              request.requestMatchers("/**").permitAll();
-              //                  .requestMatchers("/auth/**")
-              //                  .permitAll()
-              //                  .requestMatchers(HttpMethod.OPTIONS, "/**")
-              //                  .permitAll()
-              //                  .requestMatchers(HttpMethod.GET, "/borrows/user/**")
-              //                  .hasAnyAuthority("CUSTOMER", "LIBRARIAN")
-              //                  .requestMatchers(HttpMethod.GET, "/books")
-              //                  .hasAnyAuthority("CUSTOMER", "LIBRARIAN")
-              //                  .requestMatchers("/users/**", "/books/**", "/borrows/**")
-              //                  .hasAnyAuthority("LIBRARIAN")
-              //                  .anyRequest()
-              //                  .authenticated();
+              request
+                  .requestMatchers(HttpMethod.OPTIONS, "/**")
+                  .permitAll()
+                  .requestMatchers("/auth/**")
+                  .permitAll()
+                  .requestMatchers(HttpMethod.GET, "/borrows/user/**")
+                  .hasAnyAuthority("CUSTOMER", "LIBRARIAN")
+                  .requestMatchers(HttpMethod.GET, "/books")
+                  .hasAnyAuthority("CUSTOMER", "LIBRARIAN")
+                  .requestMatchers("/users/**", "/books/**", "/borrows/**")
+                  .hasAnyAuthority("LIBRARIAN")
+                  .anyRequest()
+                  .authenticated();
             })
         .authenticationProvider(appConfig.authenticationProvider())
         .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
