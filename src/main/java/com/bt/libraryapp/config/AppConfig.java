@@ -53,13 +53,29 @@ public class AppConfig {
     return configuration.getAuthenticationManager();
   }
 
+  //  @Bean
+  //  public CorsConfigurationSource corsConfigurationSource() {
+  //    CorsConfiguration corsConfiguration = new CorsConfiguration();
+  //    corsConfiguration.setAllowedOrigins(
+  //        List.of("https://its-app-07-dev", "https://its-app-07-dev:445"));
+  //    corsConfiguration.setAllowedMethods(List.of("*"));
+  //    corsConfiguration.setAllowCredentials(true);
+  //    corsConfiguration.setAllowedHeaders(List.of("*"));
+  //    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+  //    source.registerCorsConfiguration("/**", corsConfiguration);
+  //    return source;
+  //  }
+
   @Bean
   public CorsConfigurationSource corsConfigurationSource() {
     CorsConfiguration corsConfiguration = new CorsConfiguration();
-    corsConfiguration.setAllowedOrigins(List.of("https://its-app-07-dev:443"));
-    corsConfiguration.setAllowedMethods(List.of("*"));
-    corsConfiguration.setAllowCredentials(true);
-    corsConfiguration.setAllowedHeaders(List.of("*"));
+    corsConfiguration.setAllowedOrigins(List.of("*")); // Allow all origins for testing
+    corsConfiguration.setAllowedMethods(List.of("*")); // Allow all methods
+    corsConfiguration.setAllowCredentials(true); // If you need credentials, set this to true
+    corsConfiguration.setAllowedHeaders(List.of("*")); // Allow all headers
+    corsConfiguration.setExposedHeaders(
+        List.of("Authorization")); // Expose the Authorization header if needed
+
     UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
     source.registerCorsConfiguration("/**", corsConfiguration);
     return source;
