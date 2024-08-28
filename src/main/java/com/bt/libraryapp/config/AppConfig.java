@@ -56,7 +56,8 @@ public class AppConfig {
   @Bean
   public CorsConfigurationSource corsConfigurationSource() {
     CorsConfiguration corsConfiguration = new CorsConfiguration();
-    corsConfiguration.setAllowedOrigins(List.of("https://its-app-07-dev:443"));
+    corsConfiguration.setAllowedOrigins(
+        List.of("https://its-app-07-dev:443", "https://its-app-07-dev:445"));
     corsConfiguration.setAllowedMethods(List.of("*"));
     corsConfiguration.setAllowCredentials(true);
     corsConfiguration.setAllowedHeaders(List.of("*"));
